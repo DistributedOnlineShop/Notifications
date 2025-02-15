@@ -1,5 +1,6 @@
 -- name: CreateNotification :one
 INSERT INTO notifications (
+    NOTIFICATION_ID,
     USER_ID,
     TITLE,
     MESSAGE,
@@ -8,7 +9,8 @@ INSERT INTO notifications (
     $1,
     $2,
     $3,
-    $4
+    $4,
+    $5
 ) RETURNING *;
 
 -- name: GetNotificationsList :many

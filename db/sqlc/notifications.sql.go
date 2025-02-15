@@ -14,6 +14,7 @@ import (
 
 const createNotification = `-- name: CreateNotification :one
 INSERT INTO notifications (
+    NOTIFICATION_ID,
     USER_ID,
     TITLE,
     MESSAGE,
@@ -22,19 +23,22 @@ INSERT INTO notifications (
     $1,
     $2,
     $3,
-    $4
+    $4,
+    $5
 ) RETURNING notification_id, user_id, title, message, type, is_read, created_at, updated_at
 `
 
 type CreateNotificationParams struct {
-	UserID  uuid.UUID   `json:"user_id"`
-	Title   pgtype.Text `json:"title"`
-	Message pgtype.Text `json:"message"`
-	Type    string      `json:"type"`
+	NotificationID uuid.UUID   `json:"notification_id"`
+	UserID         uuid.UUID   `json:"user_id"`
+	Title          pgtype.Text `json:"title"`
+	Message        pgtype.Text `json:"message"`
+	Type           string      `json:"type"`
 }
 
 func (q *Queries) CreateNotification(ctx context.Context, arg CreateNotificationParams) (Notification, error) {
 	row := q.db.QueryRow(ctx, createNotification,
+		arg.NotificationID,
 		arg.UserID,
 		arg.Title,
 		arg.Message,

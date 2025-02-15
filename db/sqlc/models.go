@@ -16,6 +16,6 @@ type Notification struct {
 	Message        pgtype.Text      `json:"message"`
 	Type           string           `json:"type"`
 	IsRead         bool             `json:"is_read"`
-	CreatedAt      pgtype.TIMESTAMP(0) `json:"created_at"`
-	UpdatedAt      pgtype.TIMESTAMP(0) `json:"updated_at"`
+	CreatedAt      pgtype.Timestamp `json:"created_at"`
+	UpdatedAt      pgtype.Timestamp `json:"updated_at"`
 }
