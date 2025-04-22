@@ -14,9 +14,9 @@ func CreateRandomNotification(t *testing.T, userID uuid.UUID) Notification {
 	data := CreateNotificationParams{
 		NotificationID: util.CreateUUID(),
 		UserID:         userID,
-		Title:          util.GenerateRandomTitle(),
-		Message:        util.GenerateRandomMessage(),
-		Type:           util.GenerateRandomType(),
+		Title:          util.GenerateTitle(),
+		Message:        util.GenerateMessage(),
+		Type:           util.GenerateType(),
 	}
 
 	notif, err := testStore.CreateNotification(context.Background(), data)

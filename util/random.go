@@ -6,20 +6,20 @@ import (
 	"golang.org/x/exp/rand"
 )
 
-func GenerateRandomTitle() pgtype.Text {
+func GenerateTitle() pgtype.Text {
 	return pgtype.Text{
 		String: gofakeit.BookTitle(),
 		Valid:  true,
 	}
 }
-func GenerateRandomMessage() pgtype.Text {
+func GenerateMessage() pgtype.Text {
 	return pgtype.Text{
 		String: gofakeit.BookGenre(),
 		Valid:  true,
 	}
 }
 
-func GenerateRandomType() string {
+func GenerateType() string {
 	notifications := []string{
 		"Order-Related",
 		"Payment-Related",
@@ -31,5 +31,4 @@ func GenerateRandomType() string {
 	}
 
 	return notifications[rand.Intn(len(notifications))]
-
 }
